@@ -17,6 +17,7 @@ set :ssh_options, {
 # install dependencies
 before "deploy:starting", "git:install"
 before "deploy:starting", "nginx:install"
+before "deploy:starting", "php5_fpm:install"
 
 # configure dependencies
 after "deploy:updated", "nginx:configure"
