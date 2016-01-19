@@ -12,7 +12,7 @@ bundle install
 cap staging deploy
 ```
 
-**Deploy to production servers**
+**Deploy to all servers (staging and production)**
 ```
 cap production deploy
 ```
