@@ -8,6 +8,12 @@ set :deploy_to, '/usr/share/nginx/manager'
 # some servers require password login, ask for the password
 ask(:password, 'root', echo: false)
 
+# set global ssh options
+set :ssh_options, {
+  user: 'root',
+  password: fetch(:password),
+}
+
 # install dependencies
 before "deploy:starting", "git:install"
 before "deploy:starting", "nginx:install"
