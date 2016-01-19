@@ -9,14 +9,13 @@ namespace :nginx do
     desc "Configure nginx"
     task :configure do
         on roles(:all) do |host|
-            if install_config('config/nginx/default.conf', '/etc/nginx/conf.d/')
-                invoke "nginx:reload"
+            uninstalled = uninstall_config('/etc/nginx/sites-enabled/default')
+            installed = install_config('config/nginx/default.conf', '/etc/nginx/conf.d/')
+
+            # reload nginx if either config changed
+            if uninstalled || installed
+                execute "service nginx reload"
             end
         end
-    end
-
-    desc "Reload nginx"
-    task :reload do
-        execute "service nginx reload"
     end
 end
