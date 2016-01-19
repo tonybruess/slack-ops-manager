@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Capistrano
     module Helpers
         module Install
@@ -24,14 +26,8 @@ module Capistrano
                 file_new = File.join(release_path, file)
                 file_old = File.join(folder, File.basename(file))
 
-                print file_new
-                print file_old
-
-                begin
-                    execute "cmp #{file_new} #{file_old}"
-                    return false
-                rescue SSHKit::Command::Failed
-                    return true
+                if !File.exist?(file_new) || !File.exist?(file_old) || !FileUtils.cmp(file_new, file_old)
+                    FileUtils.copy(file_new, file_old)
                 end
             end
         end

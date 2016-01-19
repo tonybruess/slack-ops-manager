@@ -9,7 +9,7 @@ namespace :nginx do
     desc "Configure nginx"
     task :configure do
         on roles(:all) do |host|
-            install_config 'config/nginx/app.conf', '/etc/nginx/conf.d/'
+            install_config 'config/nginx/default.conf', '/etc/nginx/conf.d/'
         end
     end
 end
