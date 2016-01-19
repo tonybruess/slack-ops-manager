@@ -1,6 +1,5 @@
-# server-based syntax
-# ======================
-# Defines a single server with a list of roles and multiple properties.
-# You can define all roles on a single server, or split them:
+# Production servers
+# ==================
+# These servers get deployed to in the production stage
 
 server '50.16.44.122', roles: %w{app db}

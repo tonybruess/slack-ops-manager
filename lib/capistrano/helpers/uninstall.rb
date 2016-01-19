@@ -1,6 +1,8 @@
 module Capistrano
     module Helpers
         module Uninstall
+
+            # Returns true if the file was removed
             def uninstall_config(file)
                 if test("[ -f #{file} ]")
                     execute("rm -f #{file}")

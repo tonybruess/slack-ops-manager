@@ -1,14 +1,20 @@
 module Capistrano
     module Helpers
         module Install
-            def install_apt(program)
-                if not test("dpkg -l #{program}")
-                    execute("apt-get -y install #{program}")
-                end
 
-                return true
+            # Attempts to install a package via apt-get
+            # Returns true if it is not already installed
+            def install_apt(package)
+                if not test("dpkg -l #{package}")
+                    execute("apt-get -y install #{package}")
+                    return true
+                else
+                    return false
+                end
             end
 
+            # Attempts to install a configuration file
+            # Returns true if the configuration file is created or changed
             def install_config(file, folder)
                 file_new = File.join(release_path, file)
                 file_old = File.join(folder, File.basename(file))
