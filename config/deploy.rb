@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'manager'
 set :repo_url, 'git@github.com:tonybruess/slack-ops-manager.git'
-set :deploy_to, '/usr/share/nginx'
+set :deploy_to, '/usr/share/nginx/manager'
 
 # some servers require password login, ask for the password
 ask(:password, 'root', echo: false)
