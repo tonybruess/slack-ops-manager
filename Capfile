@@ -4,10 +4,6 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 
-# Configure RVM and Bundler
-require 'capistrano/rvm'
-require 'capistrano/bundler'
-
 # Load custom tasks from `lib/capistrano/tasks`
 Dir.glob('lib/capistrano/tasks/*.rb').each { |r| import r }
 
